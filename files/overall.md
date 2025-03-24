@@ -5,24 +5,17 @@
 - chứng minh tính đa hình là quan trọng nhất
 - phân biệt tham chiếu và tham trị
 - override & overload
-- structure & class
-- destructor
 - SOLID
 - những loại variable
 - cohesion
 - tight coupling / Loose coupling
 - DI
 - async/await
+- bộ nhớ stack và heap
 
 ---
 
-#### 1. Thế nào là `static`?
-
-Các phương thức và hàm có chứa từ khóa `static` đều thuộc lớp có thể truy cập từ class trực tiếp mà không cần trải qua quá trình tạo đối tượng mới.
-
----
-
-#### 2. Đặc điểm của `final`:
+#### 1. Đặc điểm của `final`:
 
 - Những thuộc tính `final` không có khả năng thay đổi giá trị của nó.
 - Các phương thức `final` không có khả năng override ở lớp con.
@@ -30,7 +23,7 @@ Các phương thức và hàm có chứa từ khóa `static` đều thuộc lớ
 
 ---
 
-#### 3. Đa hình (Polymorphism)
+#### 2. Đa hình (Polymorphism)
 
 Tính đa hình là khả năng một object có thể thực hiện một tác vụ theo nhiều cách khác nhau, cụ thể là cho phép biến/hàm hoặc đối tượng có thể có nhiều dạng khác nhau.
 
@@ -41,7 +34,7 @@ Tính đa hình là khả năng một object có thể thực hiện một tác 
 
 ---
 
-#### 4. Các loại biến (Variable) trong OOP
+#### 3. Các loại biến (Variable) trong OOP
 
 - **Primitive Variable:** Biểu diễn các giá trị nguyên thủy như `int`, `float`...
 - **Reference Variable:** Tham chiếu đến các đối tượng trong Java.
@@ -51,7 +44,7 @@ Tính đa hình là khả năng một object có thể thực hiện một tác 
 
 ---
 
-#### 5. SOLID Principles
+#### 4. SOLID Principles
 
 Nguyên tắc SOLID là các nguyên tắc hướng đối tượng được Robert C. Martin giới thiệu trong bài báo cáo _"Design Principles and Design Patterns"_ năm 2000.
 
@@ -63,7 +56,7 @@ Nguyên tắc SOLID là các nguyên tắc hướng đối tượng được Rob
 
 ---
 
-#### 6. Constructor
+#### 5. Constructor
 
 - **Private Constructor:** Hạn chế khởi tạo class từ bên ngoài.
 - **Default Constructor:** Trình biên dịch tự động tạo ra.

@@ -93,6 +93,10 @@ button {
     align-items: center;
 }
 
+li {
+    margin: 10px 0;
+}
+
 /* Dark mode */
 .dark-mode {
     background: #222;
@@ -100,12 +104,12 @@ button {
 }
 
 .dark-mode h1,
-.dark-mode h2,
-.dark-mode h3 {
+.dark-mode h2{
     color: #f39c12;
 }
 
-.dark-mode h4 {
+.dark-mode h4, 
+.dark-mode h3 {
     color: #e0cb7a;
 }
 
@@ -115,4 +119,19 @@ button {
 
 .dark-mode a {
     color: #60c377;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
