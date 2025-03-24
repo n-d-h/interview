@@ -138,5 +138,5 @@ public class UsingStaticExample {
 | Truy cập | Có thể truy cập mà không cần tạo đối tượng của lớp | Phải tạo đối tượng của lớp để truy cập |
 | Số lượng bản sao | Chỉ có một bản sao cho tất cả các đối tượng của lớp | Mỗi đối tượng có bản sao riêng của các biến và phương thức |
 | Truy cập biến và phương thức khác | Chỉ có thể truy cập các thành viên static khác trong lớp | Có thể truy cập cả biến và phương thức static lẫn non-static |
----
+
 
