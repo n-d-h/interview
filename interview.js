@@ -1,4 +1,4 @@
-const converter = new showdown.Converter();
+const converter = new showdown.Converter({ tables: true, strikethrough: true, tasklists: true, ghCodeBlocks: true });
 const folderPath = "files/";
 
 // async function fetchMarkdownFiles() {
@@ -77,6 +77,9 @@ async function loadMarkdown(markdownFile) {
 
         const text = await response.text();
         document.getElementById("content").innerHTML = converter.makeHtml(text);
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightElement(block);
+        });
     } catch (error) {
         console.error("Error loading file:", error);
     } finally {

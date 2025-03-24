@@ -29,9 +29,15 @@ h4 {
 }
 
 pre {
-    background: #f4f4f4;
-    padding: 10px;
+    background: #2e2d2d;
+    padding: 10px 20px;
     border-radius: 5px;
+    border: 1px dashed gray;
+}
+
+pre code {
+    background: transparent !important;
+    padding: 10px;
 }
 
 code {
@@ -104,11 +110,11 @@ li {
 }
 
 .dark-mode h1,
-.dark-mode h2{
+.dark-mode h2 {
     color: #f39c12;
 }
 
-.dark-mode h4, 
+.dark-mode h4,
 .dark-mode h3 {
     color: #e0cb7a;
 }
@@ -123,9 +129,8 @@ li {
 
 table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    border-radius: 5px;
+    /* margin: 20px 0; */
+    /* border-radius: 20px; */
     overflow: hidden;
 }
 
