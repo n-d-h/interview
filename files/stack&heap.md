@@ -132,4 +132,56 @@ public class GarbageCollectionExample {
 - Dữ liệu **nhỏ, ngắn hạn** ➝ **Stack**.  
 - Dữ liệu **lớn, dài hạn** ➝ **Heap**.  
 
-🚀 **Nắm vững Stack & Heap giúp tối ưu hiệu suất và tránh lỗi bộ nhớ trong Java!**
+---
+
+`Heap`:
+
+Heap là nơi lưu trữ các đối tượng Java. Khi tạo một đối tượng bằng cách sử dụng từ khóa "new", đối tượng sẽ được lưu trữ trong Heap. Vùng nhớ Heap có thể tồn tại đến khi không có tham chiếu đến đối tượng đó nữa hoặc cho đến khi chương trình kết thúc.
+
+`Stack`:
+
+Stack là nơi lưu trữ các biến cục bộ và các tham số của phương thức. Mỗi lần một phương thúc được gọi, một frame mới được tạo ra trên Stack để lưu trữ các biến cục bộ và tham số của phương thức đó. Khi phương trình hoàn thành, frame được loại bỏ khỏi Stack và bộ nhớ được giải phóng.
+
+>_Note_:
+> - Frame (còn được gọi là activation record hay call stack frame) là một đơn vị dữ liệu được tạo ra khi một phương thức được gọi trong chương trình Java. Mỗi frame chứa các thông tin về biến cục bộ, tham số của phương thức và các giá trị trả về.
+>- Mỗi khi một phương thức được gọi, một frame mới được tạo ra trên đỉnh của Stack, các tham số của phương thức và các biến cục bộ được cấp phát trên frame này. Các giá trị được truyền vào phương thức được đưa vào frame thông qua tham số của frame.
+> - Khi phương thức hoàn thành, frame được loại bỏ khỏi đỉnh của Stack và bộ nhớ được giải phóng. Các giá trị trả về của phương thức được truyền lại thông qua frame trước đó trong Stack.
+
+Cách lưu trữ bộ nhớ trên Heap và Stack khác nhau:
+Trong Heap, bộ nhớ được cấp phát động bởi JVM khi các đối tượng được tạo ra và bộ nhớ được giải phóng khi không có tham chiếu nào trỏ đến đối tượng đó nữa.
+
+Trong Stack, bộ nhớ được cấp phát tĩnh khi một phương thức được gọi và bộ nhớ được giải phóng khi phương thức hoàn thành. 
+
+
+```java
+public class Example {
+
+    private static String global1 = "Hello, world!";
+
+    private String global2 = "Hi, world!";
+    
+    public static void main(String[] args) {
+
+        String localVar = "Hello, Java!";
+        Object obj = new Object();
+        System.out.println(obj);
+
+    }
+}
+```
+
+Trong ví dụ trên:
+
+- Biến toàn cục global1 được lưu trữ trên Heap, cụ thể hơn là trong vùng nhớ static memory(data segment). Khi lớp được tải vào bộ nhớ, biến toàn cục này sẽ được khởi tạo.
+
+- Biến toàn cục global2 được lưu trữ trên Heap, nhưng lưu trữ trong vùng nhớ non-static memory, nơi lưu trữ tất các các biến thể hiện của một lớp. Nó được tạo khi mộ instance được tạo ra.
+
+- Tham số args của phương thức main được lưu trữ trên stack vì chúng là biến cục bộ của phương thức.
+
+- Biến cục bộ localVar được lưu trữ trên stack vì nó cũng là một biến cục bộ của phương thức.
+
+- Đối tượng obj được khởi tạo bằng từ khóa new, do đó nó sẽ được lưu trữ trên heap và một địa chỉ tham chiếu đến đối tượng sẽ được lưu trữ trên stack.
+
+> Note:
+> - Khi phương thức "main" được gọi, frame mới được tạo ra trên Stack để lưu trữ các biến cục bộ và tham số của phương thức bao gồm localVar và tham số args. Sau đó, một đối tượng mới được tạo ra trên Heap bằng cách sử dụng từ khóa "new", và địa chỉ của đối tượng này được gán cho biến obj. khi System.out.println(obj) địa chỉ của đối tượng được in màn hình.
+> - Khi phương thức "main" kết thúc, frame trên Stack được loại bỏ khỏi Stack và các biến cục bộ cùng tham số của phương thức được giải phóng khỏi bộ nhớ. Tuy nhiên, đối trượng được tạo ra trên Heap sẽ tiếp tục tồn tại cho đến khi bị bộ thu gom rác(Garbage collected) lụm :v
