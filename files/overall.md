@@ -107,6 +107,27 @@ Nguyên tắc SOLID là các nguyên tắc hướng đối tượng được Rob
 - **Giai thừa**
 - **Fibonacci**
 - **Hoán vị**
+- **Đảo ngược chuỗi**
+- **Chia để trị**
+- **Làm phẳng mảng**
+- **Tìm các phần tử trùng**
+- **Loại bỏ phần tử trùng**
+- **Tìm các kí tự xuất hiện nhiều nhất**
+- **Tìm các kí tự trùng lặp trong chuỗi**
+- **Tìm số lớn thứ hai**
+- **Tìm số lớn nhất**
+- **Tìm số bị thiếu trong mảng đã sắp xếp**
+- **Tìm số lớn nhất nhỏ hơn**
+- **Tìm các tập hợp số có tổng bằng một số cho trước**
+- **bubble sort**
+- **quick sort**
+- **merge sort**
+- **insertion sort**
+- **binary search**
+- **depth first search**
+- **breadth first search**
+- **dijkstra algorithm**
+- **floyd warshall algorithm**
 
 ---
 
