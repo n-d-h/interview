@@ -103,7 +103,7 @@ Nguyên tắc SOLID là các nguyên tắc hướng đối tượng được Rob
 
 - **Tìm kiếm**
 - **Sắp xếp**
-- **Tìm số nguyên**
+- **Tìm số nguyên tố**
 - **Giai thừa**
 - **Fibonacci**
 - **Hoán vị**
