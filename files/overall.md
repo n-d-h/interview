@@ -73,7 +73,7 @@ Nguyên tắc SOLID là các nguyên tắc hướng đối tượng được Rob
 #### Các nguyên tắc SQL
 
 - **Indexing**: Tăng tốc độ truy vấn.
-- **SQL Injection**: Tấn công bằng cách chèn mã SQL độc hại.
+- **[SQL Injection](http://www.lavamunky.com/2011/11/why-parameterized-queries-stop-sql.html)**: Tấn công bằng cách chèn mã SQL độc hại.
 - **Transaction**: Đảm bảo tính toàn vẹn dữ liệu.
 - **JDBC**: Java Database Connectivity giúp kết nối Java với cơ sở dữ liệu.
 
