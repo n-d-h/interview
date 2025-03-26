@@ -76,7 +76,7 @@ processUserInput(greeting);
   - **Fulfilled:** Thực thi thành công.
   - **Rejected:** Thực thi thất bại.
   - **Settled:** Đã thực thi, có thể là thành công hoặc thất bại.
-- Xử lý song song với **Promise.all()** 
+- Xử lý song song với **Promise.all()**
 
 ```javascript
 let promise = new Promise(function (resolve, reject) {
@@ -400,6 +400,7 @@ document.querySelector(".parent").addEventListener("click", function (e) {
 ---
 
 ### 19. WeakMap và WeakSet là gì?
+
 - **WeakMap:** Là một cấu trúc dữ liệu giữ các cặp key-value trong đó key phải là một object và giữ một tham chiếu yếu đến key.
 - **WeakSet:** Là một cấu trúc dữ liệu giữ các giá trị duy nhất trong đó giá trị phải là một object và giữ một tham chiếu yếu đến giá trị.
 
@@ -415,23 +416,24 @@ weakSet.add(obj);
 ```
 
 - Phân biệt **Map** và **WeakMap**:
-    - **WeakMap** khá giống với **Map** nhưng có một số điểm khác biệt:
-        - **Key và value:** Chỉ chấp nhận object.
-        - **Weak Reference:** Tham chiếu yếu đến key.
-        - **Garbage Collection:** Sẽ bị thu gom rác nếu không còn tham chiếu nào đến key.
-        - **Iterate:** Không hỗ trợ phương thức iterate.
-        - **Các phương thức:** Chỉ hỗ trợ `get()`, `set()`, `has()`, `delete()`.
+
+  - **WeakMap** khá giống với **Map** nhưng có một số điểm khác biệt:
+    - **Key và value:** Chỉ chấp nhận object.
+    - **Weak Reference:** Tham chiếu yếu đến key.
+    - **Garbage Collection:** Sẽ bị thu gom rác nếu không còn tham chiếu nào đến key.
+    - **Iterate:** Không hỗ trợ phương thức iterate.
+    - **Các phương thức:** Chỉ hỗ trợ `get()`, `set()`, `has()`, `delete()`.
 
 - Phân biệt **Set** và **WeakSet**:
-    - **WeakSet** khá giống với **Set** nhưng có một số điểm khác biệt:
-        - **Value:** Chỉ chấp nhận object.
-        - **Weak Reference:** Sẽ bị thu gom rác nếu không còn tham chiếu nào đến value.
-        - **Garbage Collection:** Không ngăn chặn việc thu gom rác.
-        - **Iterate:** Không hỗ trợ phương thức iterate.
-        - **Các phương thức:** Chỉ hỗ trợ `add()`, `has()`, `delete()`.
-
+  - **WeakSet** khá giống với **Set** nhưng có một số điểm khác biệt:
+    - **Value:** Chỉ chấp nhận object.
+    - **Weak Reference:** Sẽ bị thu gom rác nếu không còn tham chiếu nào đến value.
+    - **Garbage Collection:** Không ngăn chặn việc thu gom rác.
+    - **Iterate:** Không hỗ trợ phương thức iterate.
+    - **Các phương thức:** Chỉ hỗ trợ `add()`, `has()`, `delete()`.
 
 ### 20. ES6
+
 ```javascript
 const arr = [1, 2, 3, 4];
 const [first, second, third, fourth] = arr;
@@ -480,4 +482,30 @@ const obj1 = { x: 1, y: 2 };
 const obj2 = { z: 3, ...obj1, x: 4 };
 
 console.log(obj2); // Outputs { z: 3, x: 1, y: 2 }
+```
+
+---
+
+### 21. bind(), call() và apply() là gì?
+
+- **bind():** Trả về một hàm mới với một ngữ cảnh được thiết lập cho hàm gốc.
+- **call():** Gọi một hàm với một ngữ cảnh được thiết lập và các đối số được truyền theo cách dạng danh sách.
+- **apply():** Gọi một hàm với một ngữ cảnh được thiết lập và các đối số được truyền theo cách dạng mảng.
+
+```javascript
+let person = {
+  name: "Alice",
+  greet: function () {
+    console.log("Hello " + this.name);
+  },
+};
+
+let greet = person.greet;
+greet(); // Output: Hello undefined
+
+let greet = person.greet.bind(person);
+greet(); // Output: Hello Alice
+
+person.greet.call(person); // Output: Hello Alice
+person.greet.apply(person); // Output: Hello Alice
 ```
