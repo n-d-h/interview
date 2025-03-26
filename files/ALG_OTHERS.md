@@ -194,6 +194,35 @@ function findDuplicates(arr) {
 }
 ```
 
+## 8.1 Đếm số lần xuất hiện của các phần tử
+
+- **Độ phức tạp thời gian:** O(n)
+- **Độ phức tạp không gian:** O(n)
+
+`java`
+
+```java
+public Map<Integer, Integer> countOccurrences(int[] arr) {
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int num : arr) {
+        map.put(num, map.getOrDefault(num, 0) + 1);
+    }
+    return map;
+}
+```
+
+`javascript`
+
+```javascript
+function countOccurrences(arr) {
+  let map = new Map();
+  for (let num of arr) {
+    map.set(num, (map.get(num) || 0) + 1);
+  }
+  return map;
+}
+```
+
 ---
 
 ## 9. Loại bỏ phần tử trùng
