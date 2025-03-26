@@ -396,3 +396,88 @@ document.querySelector(".parent").addEventListener("click", function (e) {
   console.log(e.currentTarget); // Output: Phần tử cha được gắn sự kiện
 });
 ```
+
+---
+
+### 19. WeakMap và WeakSet là gì?
+- **WeakMap:** Là một cấu trúc dữ liệu giữ các cặp key-value trong đó key phải là một object và giữ một tham chiếu yếu đến key.
+- **WeakSet:** Là một cấu trúc dữ liệu giữ các giá trị duy nhất trong đó giá trị phải là một object và giữ một tham chiếu yếu đến giá trị.
+
+```javascript
+let weakMap = new WeakMap();
+let key = {};
+weakMap.set(key, "value");
+console.log(weakMap.get(key)); // Output: value
+
+let weakSet = new WeakSet();
+let obj = { x: 1 };
+weakSet.add(obj);
+```
+
+- Phân biệt **Map** và **WeakMap**:
+    - **WeakMap** khá giống với **Map** nhưng có một số điểm khác biệt:
+        - **Key và value:** Chỉ chấp nhận object.
+        - **Weak Reference:** Tham chiếu yếu đến key.
+        - **Garbage Collection:** Sẽ bị thu gom rác nếu không còn tham chiếu nào đến key.
+        - **Iterate:** Không hỗ trợ phương thức iterate.
+        - **Các phương thức:** Chỉ hỗ trợ `get()`, `set()`, `has()`, `delete()`.
+
+- Phân biệt **Set** và **WeakSet**:
+    - **WeakSet** khá giống với **Set** nhưng có một số điểm khác biệt:
+        - **Value:** Chỉ chấp nhận object.
+        - **Weak Reference:** Sẽ bị thu gom rác nếu không còn tham chiếu nào đến value.
+        - **Garbage Collection:** Không ngăn chặn việc thu gom rác.
+        - **Iterate:** Không hỗ trợ phương thức iterate.
+        - **Các phương thức:** Chỉ hỗ trợ `add()`, `has()`, `delete()`.
+
+
+### 20. ES6
+```javascript
+const arr = [1, 2, 3, 4];
+const [first, second, third, fourth] = arr;
+
+console.log(first); // Outputs 1
+console.log(second); // Outputs 2
+console.log(third); // Outputs 3
+console.log(fourth); // Outputs 4
+```
+
+```javascript
+const obj = { x: 1, y: 2, z: 3 };
+const { x, y, z } = obj;
+
+console.log(x); // Outputs 1
+console.log(y); // Outputs 2
+console.log(z); // Outputs 3
+```
+
+```javascript
+const arr = [1, 2, 3, 4];
+const [first, second, ...rest] = arr;
+
+console.log(first); // Outputs 1
+console.log(second); // Outputs 2
+console.log(rest); // Outputs [3, 4]
+```
+
+```javascript
+const obj = { x: 1, y: 2, z: 3 };
+const { x, ...rest } = obj;
+
+console.log(x); // Outputs 1
+console.log(rest); // Outputs { y: 2, z: 3 }
+```
+
+```javascript
+const obj1 = { x: 1, y: 2 };
+const obj2 = { z: 3, ...obj1 };
+
+console.log(obj2); // Outputs { z: 3, x: 1, y: 2 }
+```
+
+```javascript
+const obj1 = { x: 1, y: 2 };
+const obj2 = { z: 3, ...obj1, x: 4 };
+
+console.log(obj2); // Outputs { z: 3, x: 1, y: 2 }
+```
