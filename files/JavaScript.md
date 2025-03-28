@@ -509,3 +509,71 @@ greet(); // Output: Hello Alice
 person.greet.call(person); // Output: Hello Alice
 person.greet.apply(person); // Output: Hello Alice
 ```
+
+### 22. Currying là gì?
+- **Currying** là một kỹ thuật chuyển đổi một hàm nhận nhiều đối số thành chuỗi các hàm nhận một đối số.
+
+```javascript
+function multiply(a) {
+  return function (b) {
+    return function (c) {
+      return a * b * c;
+    };
+  };
+}
+
+console.log(multiply(2)(3)(4)); // Output: 24
+```
+
+---
+
+### 23. Composition là gì?
+- **Composition** là một kỹ thuật kết hợp nhiều hàm nhỏ thành một hàm lớn.
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+
+function multiply(a, b) {
+  return a * b;
+}
+
+function compose(fn1, fn2) {
+  return function (a, b, c) {
+    return fn2(fn1(a, b), c);
+  };
+}
+
+let addAndMultiply = compose(add, multiply);
+console.log(addAndMultiply(2, 3, 4)); // Output: 20
+```
+
+---
+
+### 24. CORS là gì?
+- **CORS (Cross-Origin Resource Sharing)** là một cơ chế cho phép tài nguyên từ một trang web hoặc miền khác được yêu cầu từ trang web hiện tại.
+
+```javascript
+// Cách 1: Sử dụng XMLHttpRequest
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://api.example.com/data", true);
+xhr.withCredentials = true;
+xhr.send();
+
+// Cách 2: Sử dụng Fetch API
+var myHeaders = new Headers();
+var myInit = { method: "GET", headers: myHeaders, mode: "cors", cache: "default" };
+// set up origin
+myHeaders.append("Origin", "http://example.com");
+
+fetch("https://api.example.com/data", myInit).then(function (response) {
+  return response.json();
+});
+```
+
+```java
+// server side
+response.setHeader("Access-Control-Allow-Origin", "http://example.com");
+response.setHeader("Access-Control-Allow-Credentials", "true");
+```

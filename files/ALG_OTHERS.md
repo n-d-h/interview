@@ -609,6 +609,43 @@ function findPairsWithSum(arr, sum) {
 }
 ```
 
+## 18.1 Tìm cặp số có tổng bằng một số cho trước
+
+- **Độ phức tạp thời gian:** O(n)
+- **Độ phức tạp không gian:** O(n)
+
+`java`
+
+```java
+public List<int[]> findPairsWithSum(int[] arr, int sum) {
+    List<int[]> result = new ArrayList<>();
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int num : arr) {
+        if (map.containsKey(sum - num)) {
+            result.add(new int[]{num, sum - num});
+        }
+        map.put(num, map.getOrDefault(num, 0) + 1);
+    }
+    return result;
+}
+```
+
+`javascript`
+
+```javascript
+function findPairsWithSum(arr, sum) {
+  let result = [];
+  let map = new Map();
+  for (let num of arr) {
+    if (map.has(sum - num)) {
+      result.push([num, sum - num]);
+    }
+    map.set(num, (map.get(num) || 0) + 1);
+  }
+  return result;
+}
+```
+
 ## 19. Đổi chiều ngang và chiều dọc của ma trận
 
 - **Độ phức tạp thời gian:** O(n \* m)
