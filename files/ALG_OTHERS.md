@@ -98,6 +98,23 @@ public void reverseArray(int[] arr) {
         arr[n - i - 1] = temp;
     }
 }
+
+//====================
+
+public void reverseArray(int[] arr) {
+  int left = 0
+    int right = arr.length;
+    while (left < right) {
+      // Swap arr[left] and arr[right]
+      int temp = arr[left];
+      arr[left] = arr[right];
+      arr[right] = temp;
+      // Move towards the middle
+      left++;
+      right--;
+    }
+    return arr;
+}
 ```
 
 ---
@@ -243,7 +260,24 @@ public int[] removeDuplicates(int[] arr) {
     for (int num : set) {
         result[i++] = num;
     }
-    return result;
+    return result
+    ;
+}
+
+//===================================
+
+public int removeDuplicates(int[] nums) {
+    int count = 0;
+    int n = nums.length;
+    for (int i = 0; i < n; i++) {
+        if (i < n - 1 &&  nums[i] == nums[i + 1])  {
+            continue;
+        } else {
+            nums[count]  = nums[i];
+            count++;
+        }         
+    }
+    return count;
 }
 ```
 

@@ -577,3 +577,24 @@ fetch("https://api.example.com/data", myInit).then(function (response) {
 response.setHeader("Access-Control-Allow-Origin", "http://example.com");
 response.setHeader("Access-Control-Allow-Credentials", "true");
 ```
+
+### 25. phân biệt splice và slice
+- **slice():** Trả về một mảng mới chứa các phần tử từ chỉ số bắt đầu đến chỉ số kết thúc (không bao gồm chỉ số kết thúc).
+- **splice():** Thay đổi nội dung của mảng bằng cách thêm hoặc xóa các phần tử.
+
+```javascript
+// Sử dụng slice() để lấy một phần của mảng
+// và không thay đổi mảng gốc
+let arr = [1, 2, 3, 4, 5];
+let slicedArr = arr.slice(1, 4); // [2, 3, 4]
+console.log(slicedArr); // Output: [2, 3, 4]
+console.log(arr); // Output: [1, 2, 3, 4, 5]
+
+
+// Sử dụng splice() để xóa các phần tử từ mảng gốc
+// và thay đổi mảng gốc
+let arr2 = [1, 2, 3, 4, 5];
+let splicedArr = arr2.splice(1, 3); // [2, 3, 4]
+console.log(splicedArr); // Output: [2, 3, 4]
+console.log(arr2); // Output: [1, 5]
+```
