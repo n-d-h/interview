@@ -8,6 +8,7 @@ Output: [1,2,2,3,5,6]
 Explanation: The arrays we are merging are [1,2,3] and [2,5,6]. The result is [1,2,2,3,5,6].
 ```
 
+`Java`
 ```java
 public void merge(int[] nums1, int m, int[] nums2, int n) {
         for (int j = 0, i = m; j < n; j++) {
@@ -16,6 +17,17 @@ public void merge(int[] nums1, int m, int[] nums2, int n) {
         }
         Arrays.sort(nums1);
     }
+```
+
+`JavaScript`
+```javascript
+function merge(nums1, m, nums2, n) {
+    for (let j = 0, i = m; j < n; j++) {
+        nums1[i] = nums2[j];
+        i++;
+    }
+    nums1.sort((a, b) => a - b); // Sort the merged array
+}
 ```
 
 ### 2. Remove Element
@@ -27,20 +39,22 @@ Explanation: Your function should return k = 2, with the first two elements of n
 The other elements of nums are not important as the length of k is returned.
 ```
 
+`Java`
 ```java
 public int removeElement(int[] nums, int val) {
-        int k = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != val) {
-                nums[k] = nums[i];
-                k++;
-            }
+    int k = 0;
+    for (int i = 0; i < nums.length; i++) {
+        if (nums[i] != val) {
+            nums[k] = nums[i];
+            k++;
         }
-        return k;
     }
+    return k;
+}
 ```
 
-```java
+`JavaScript`
+```javascript
 function removeElementInPlace(nums, target) {
     let k = 0;
     for (let i = 0; i < nums.length; i++) {
@@ -68,6 +82,7 @@ Output: [1, 3, 5, 8, 9, 2, 7]
 Explanation: The first 3 elements are sorted, and the rest are not.
 ```
 
+`java`
 ```java
 public void partialSort(int[] nums, int k) {
     Arrays.sort(nums, 0, k);
