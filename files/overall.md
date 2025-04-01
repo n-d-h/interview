@@ -12,6 +12,16 @@
 - DI
 - async/await
 - bộ nhớ stack và heap
+- git / svn
+- tối ưu select
+- session / cookies / localStorage
+- class / object
+- bảo đảm chất lượng src code
+- lập trình bất đồng bộ là gì
+- web api trả về dữ liệu gì
+- mô hình mvc và thứ tự xử lý
+- khoá chính và khoá ngoại
+- View / Stored Procedure / Trigger
 
 ---
 
@@ -139,3 +149,96 @@ Nguyên tắc SOLID là các nguyên tắc hướng đối tượng được Rob
 - **JavaScript**
 - **Express.js**
 - **Next.js**
+
+```java
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+
+class Main {
+    private static void bai1(int[] arr) {
+        int n = arr.length;
+
+        int count = 0;
+
+        // change 5 to 0
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 5) {
+                arr[i] = 0;
+                count++;
+            }
+        }
+
+        int[] result = new int[n];
+
+        int zeroIndex = 0;
+        int nonZeroIndex = count;
+        for (int num : arr) {
+            // move 0 to the left and others to the right
+              if (num == 0) {
+                  result[zeroIndex++] = num;
+              } else {
+                  result[nonZeroIndex++] = num;
+              }
+        }
+
+
+        System.out.println("Shift left: " + Arrays.toString(result));
+
+        int[] result2 = new int[n];
+        for (int i = 0, j = count; j < n; j++) {
+            result2[i] = result[j];
+            i++;
+        }
+
+        System.out.println("Shift right: " + Arrays.toString(result2));
+    }
+
+    private static void bai2(int[] arr1, int arr2[]){
+        Map<Integer, Integer> map = new HashMap();
+        for (int i = 0; i < arr1.length; i++){
+                if (arr1[i] == arr2[i]){
+                    map.put(arr1[i], i);
+                }
+        }
+        System.out.println("Value and Position 2 arrays meet at: " + map);
+    }
+
+    private static void bai3(){
+        int size = 5;
+        char[][] array = new char[size][size];
+
+        // Gán '0' vào toàn bộ mảng
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (i == j || i + j == size - 1) {
+                    array[i][j] = 'X'; // Đánh dấu đường chéo chính & phụ
+                } else {
+                    array[i][j] = '0'; // Các phần tử khác gán '0'
+                }
+            }
+        }
+
+        for (char[] row : array) {
+            for (char cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {5,2,5,3,6,7,3,5,3,10,9,5};
+        System.out.println("1)");
+        bai1(arr1);
+        System.out.println("================================");
+        System.out.println("2)");
+        int[] arr2 = {1,2,4,7,8,10,15,17,11,20};
+        int[] arr3 = {2,3,4,8,9,10,11,16,18,20};
+        bai2(arr2, arr3);
+        System.out.println("================================");
+        System.out.println("3)");
+        bai3();
+    }
+}
+```
