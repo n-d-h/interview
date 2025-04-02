@@ -12,6 +12,7 @@
 - DI
 - async/await
 - bộ nhớ stack và heap
+>NEW
 - git / svn
 - tối ưu select
 - session / cookies / localStorage
@@ -175,9 +176,11 @@ class Main {
         int nonZeroIndex = count;
         for (int num : arr) {
             // move 0 to the left and others to the right
+            // by starting from index 0 to count index  (first half)
               if (num == 0) {
                   result[zeroIndex++] = num;
               } else {
+            // non zero numbers will start from count index (second half)
                   result[nonZeroIndex++] = num;
               }
         }
@@ -185,6 +188,8 @@ class Main {
 
         System.out.println("Shift left: " + Arrays.toString(result));
 
+
+        // Shift all zeros to the right
         int[] result2 = new int[n];
         for (int i = 0, j = count; j < n; j++) {
             result2[i] = result[j];
