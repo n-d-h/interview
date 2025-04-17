@@ -91,10 +91,12 @@ async function fetchMarkdownFiles() {
 
                 const toggleBtn = document.createElement("button");
                 toggleBtn.classList.add("folder-toggle");
-                toggleBtn.textContent = `📂 ${file.name}`;
+                toggleBtn.textContent = `${file.name} <i class="fa-solid fa-chevron-right"></i>`;
                 toggleBtn.onclick = () => {
                     const content = folderWrapper.querySelector(".folder-content");
-                    content.style.display = content.style.display === "none" ? "block" : "none";
+                    const isOpen = content.style.display === "block";
+                    content.style.display = isOpen ? "none" : "block";
+                    toggleBtn.textContent = `${isOpen ? '<i class="fa-solid fa-chevron-down"></i>' : '<i class="fa-solid fa-chevron-right"></i>'} `;
                 };
 
                 const folderContent = document.createElement("div");
@@ -105,7 +107,7 @@ async function fetchMarkdownFiles() {
                 folderWrapper.appendChild(folderContent);
                 fileList.appendChild(folderWrapper);
 
-                // Fetch files inside the folder
+                // Fetch child files
                 const folderRes = await fetch(file.url);
                 if (!folderRes.ok) continue;
                 const childFiles = await folderRes.json();
@@ -119,10 +121,11 @@ async function fetchMarkdownFiles() {
                     }
                 });
             }
+
         }
 
         // Load intro if exists
-        const intro = files.find(f => f.name === "introduction.md");
+        const intro = files.find(f => f.name === "1. Introduction.md");
         if (intro) {
             loadMarkdown(intro.download_url);
         }
