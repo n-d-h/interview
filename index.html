@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" onclick="hideSidebar(event)">
 
 <head>
     <meta charset="UTF-8">
@@ -14,16 +14,13 @@
 
 <body class="dark-mode" onload="fetchMarkdownFiles()">
     <div class="loading">Loading...</div>
+    <div class="sidebar hidden" id="fileList"></div>
+
     <div class="overlay">
-        <h1>Markdown Viewer</h1>
+        <button type="button" class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <h1>Doc</h1>
         <button type="button" onclick="toggleDarkMode()">🌙</button>
-        <br>
     </div>
-    <!-- <label for="fileSelect"></label> -->
-    <select id="fileSelect" onchange="loadMarkdown()">
-        <option value="">-- Select a file --</option>
-    </select>
-    <br>
     <div id="content"></div>
 
     <script src="interview.js"></script>
