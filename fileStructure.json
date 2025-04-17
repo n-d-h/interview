@@ -1,0 +1,150 @@
+[
+  {
+    "type": "file",
+    "name": "1. Introduction.md",
+    "path": "files/1. Introduction.md"
+  },
+  {
+    "type": "file",
+    "name": "2. Overall.md",
+    "path": "files/2. Overall.md"
+  },
+  {
+    "type": "file",
+    "name": "3. JavaScript.md",
+    "path": "files/3. JavaScript.md"
+  },
+  {
+    "type": "dir",
+    "name": "Algorithm",
+    "children": [
+      {
+        "type": "file",
+        "name": "LEETCODE.md",
+        "path": "files/Algorithm/LEETCODE.md"
+      },
+      {
+        "type": "file",
+        "name": "Others.md",
+        "path": "files/Algorithm/Others.md"
+      },
+      {
+        "type": "file",
+        "name": "SEARCH.md",
+        "path": "files/Algorithm/SEARCH.md"
+      },
+      {
+        "type": "file",
+        "name": "SORT.md",
+        "path": "files/Algorithm/SORT.md"
+      }
+    ]
+  },
+  {
+    "type": "dir",
+    "name": "OOP",
+    "children": [
+      {
+        "type": "file",
+        "name": "4 Principles OOP.md",
+        "path": "files/OOP/4 Principles OOP.md"
+      },
+      {
+        "type": "file",
+        "name": "Async & Await.md",
+        "path": "files/OOP/Async & Await.md"
+      },
+      {
+        "type": "file",
+        "name": "Cohesion & Coupling.md",
+        "path": "files/OOP/Cohesion & Coupling.md"
+      },
+      {
+        "type": "file",
+        "name": "Dependency Injection.md",
+        "path": "files/OOP/Dependency Injection.md"
+      },
+      {
+        "type": "file",
+        "name": "Equals().md",
+        "path": "files/OOP/Equals().md"
+      },
+      {
+        "type": "file",
+        "name": "Final.md",
+        "path": "files/OOP/Final.md"
+      },
+      {
+        "type": "file",
+        "name": "Inheritance Constraint.md",
+        "path": "files/OOP/Inheritance Constraint.md"
+      },
+      {
+        "type": "file",
+        "name": "Interface & Abstract class.md",
+        "path": "files/OOP/Interface & Abstract class.md"
+      },
+      {
+        "type": "file",
+        "name": "Overload & Override.md",
+        "path": "files/OOP/Overload & Override.md"
+      },
+      {
+        "type": "file",
+        "name": "Pass by [Value] & [Reference].md",
+        "path": "files/OOP/Pass by [Value] & [Reference].md"
+      },
+      {
+        "type": "file",
+        "name": "Polymorphism.md",
+        "path": "files/OOP/Polymorphism.md"
+      },
+      {
+        "type": "file",
+        "name": "Stack & Heap.md",
+        "path": "files/OOP/Stack & Heap.md"
+      },
+      {
+        "type": "file",
+        "name": "Static.md",
+        "path": "files/OOP/Static.md"
+      },
+      {
+        "type": "file",
+        "name": "this & super.md",
+        "path": "files/OOP/this & super.md"
+      },
+      {
+        "type": "file",
+        "name": "Thread.md",
+        "path": "files/OOP/Thread.md"
+      },
+      {
+        "type": "file",
+        "name": "Upcasting & Downcasting.md",
+        "path": "files/OOP/Upcasting & Downcasting.md"
+      }
+    ]
+  },
+  {
+    "type": "dir",
+    "name": "SQL",
+    "children": [
+      {
+        "type": "file",
+        "name": "Indexing Syntax.md",
+        "path": "files/SQL/Indexing Syntax.md"
+      },
+      {
+        "type": "file",
+        "name": "Indexing.md",
+        "path": "files/SQL/Indexing.md"
+      },
+      {
+        "type": "file",
+        "name": "SQL Injection.md",
+        "path": "files/SQL/SQL Injection.md"
+      }
+    ]
+  }
+]

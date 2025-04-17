@@ -216,8 +216,12 @@ td {
     color: white;
 }
 
-.dropdown {
-    margin-left: 10px;
+.folder-content {
+    margin-left: 40px;
+}
+
+.folder-content li{
+    margin: 0 !important;
 }
 
 .file-button {
@@ -225,6 +229,23 @@ td {
     color: white;
     padding-left: 1.5em;
     font-size: 0.95em;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-header h3 {
+    color: #f39c12 !important;
+    font-size: 1.5em;
+    margin: 0 !important;
+}
+
+.sidebar-header button {
+    width: fit-content;
+    margin-bottom: 8px;
 }
 
 
@@ -248,9 +269,13 @@ td {
     .sidebar {
         position: fixed;
         height: 100vh;
-        width: 200px;
+        width: 100%;
         top: 0;
         left: 0;
+    }
+
+    .sidebar-header button {
+        margin-right: 20px;
     }
 }
 
@@ -263,4 +288,13 @@ td {
     .overlay h1::after {
         content: "umentation";
     }
+
+    .sidebar {
+        position: fixed;
+        height: 100vh;
+        width: 300px;
+        top: 0;
+        left: 0;
+    }
+
 }

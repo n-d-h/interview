@@ -1,35 +1,69 @@
 const converter = new showdown.Converter({ tables: true, strikethrough: true, tasklists: true, ghCodeBlocks: true });
-const folderPath = "files/";
 
-// async function fetchMarkdownFiles() {
-//     try {
-//         // const response = await fetch(folderPath);
-//         // if (!response.ok) throw new Error("Could not access folder.");
-//         // const text = await response.text();
+async function fetchMarkdownFiles() {
+    try {
+        document.querySelector(".loading").style.display = "flex";
 
-//         // const parser = new DOMParser();
-//         // const doc = parser.parseFromString(text, "text/html");
-//         // const links = doc.querySelectorAll("a[href$='.md']");
+        const response = await fetch("fileStructure.json");
+        if (!response.ok) throw new Error("Could not load local structure.");
+        const files = await response.json();
 
-//         // const fileSelect = document.getElementById("fileSelect");
-//         // links.forEach(link => {
-//         //     let fileName = link.textContent.trim();
+        const fileList = document.getElementById("fileList");
+        fileList.innerHTML =
+            `<div class="sidebar-header">
+                <h3>Files</h3>
+                <button type="button" onclick="toggleSidebar()">❌</button>
+            </div>`;
 
-//         //     // Chỉ lấy string filename trước `.md`
-//         //     fileName = fileName.split('.md')[0] + '.md';
+        for (const file of files) {
+            if (file.type === "file") {
+                const btn = document.createElement("button");
+                btn.textContent = file.name.replace(".md", "");
+                btn.onclick = () => loadMarkdown(file.path);
+                fileList.appendChild(btn);
+            }
 
-//         //     const option = document.createElement("option");
-//         //     option.value = fileName;
-//         //     option.textContent = fileName;
-//         //     fileSelect.appendChild(option);
-//         // });
+            if (file.type === "dir") {
+                const folderWrapper = document.createElement("div");
+                folderWrapper.classList.add("folder-wrapper");
 
-//     } catch (error) {
-//         console.error("Error fetching files:", error);
-//     } finally {
-//         document.querySelector(".loading").style.display = "none";
-//     }
-// }
+                const toggleBtn = document.createElement("button");
+                toggleBtn.classList.add("folder-toggle");
+                toggleBtn.innerHTML = `📂 ${file.name}`;
+                toggleBtn.onclick = () => {
+                    const content = folderWrapper.querySelector(".folder-content");
+                    const isOpen = content.style.display === "block";
+                    content.style.display = isOpen ? "none" : "block";
+                };
+
+                const folderContent = document.createElement("div");
+                folderContent.classList.add("folder-content");
+                folderContent.style.display = "none";
+
+                file.children.forEach(child => {
+                    const childBtn = document.createElement("button");
+                    childBtn.innerHTML = `<li>${child.name.replace(".md", "")}</li>`;
+                    childBtn.onclick = () => loadMarkdown(child.path);
+                    folderContent.appendChild(childBtn);
+                });
+
+                folderWrapper.appendChild(toggleBtn);
+                folderWrapper.appendChild(folderContent);
+                fileList.appendChild(folderWrapper);
+            }
+        }
+
+        const intro = files.find(f => f.name === "1. Introduction.md");
+        if (intro) loadMarkdown(intro.path);
+
+    } catch (err) {
+        console.error("Error fetching local files:", err);
+    } finally {
+        document.querySelector(".loading").style.display = "none";
+    }
+}
+
+
 
 // async function fetchMarkdownFiles() {
 //     try {
@@ -42,100 +76,67 @@ const folderPath = "files/";
 //         const fileList = document.getElementById("fileList");
 //         fileList.innerHTML = "<h3>Files</h3>";
 
-//         files.forEach(file => {
-//             if (file.name.endsWith(".md")) {
+//         // Handle top-level .md files
+//         for (const file of files) {
+//             if (file.type === "file" && file.name.endsWith(".md")) {
 //                 const btn = document.createElement("button");
-//                 btn.textContent = file.name.split('.md')[0];
+//                 btn.textContent = file.name.replace(".md", "");
 //                 btn.onclick = () => loadMarkdown(file.download_url);
 //                 fileList.appendChild(btn);
 //             }
-//         });
 
-//         // init file if no file selected
-//         const introFile = files.find(file => file.name === "introduction.md");
-//         if (introFile) {
-//             loadMarkdown(introFile.download_url);
+//             // Handle folders
+//             if (file.type === "dir") {
+//                 const folderWrapper = document.createElement("div");
+//                 folderWrapper.classList.add("folder-wrapper");
+
+//                 const toggleBtn = document.createElement("button");
+//                 toggleBtn.classList.add("folder-toggle");
+//                 toggleBtn.textContent = `${file.name} <i class="fa-solid fa-chevron-right"></i>`;
+//                 toggleBtn.onclick = () => {
+//                     const content = folderWrapper.querySelector(".folder-content");
+//                     const isOpen = content.style.display === "block";
+//                     content.style.display = isOpen ? "none" : "block";
+//                     toggleBtn.textContent = `${isOpen ? '<i class="fa-solid fa-chevron-down"></i>' : '<i class="fa-solid fa-chevron-right"></i>'} `;
+//                 };
+
+//                 const folderContent = document.createElement("div");
+//                 folderContent.classList.add("folder-content");
+//                 folderContent.style.display = "none";
+
+//                 folderWrapper.appendChild(toggleBtn);
+//                 folderWrapper.appendChild(folderContent);
+//                 fileList.appendChild(folderWrapper);
+
+//                 // Fetch child files
+//                 const folderRes = await fetch(file.url);
+//                 if (!folderRes.ok) continue;
+//                 const childFiles = await folderRes.json();
+
+//                 childFiles.forEach(child => {
+//                     if (child.name.endsWith(".md")) {
+//                         const childBtn = document.createElement("button");
+//                         childBtn.textContent = child.name.replace(".md", "");
+//                         childBtn.onclick = () => loadMarkdown(child.download_url);
+//                         folderContent.appendChild(childBtn);
+//                     }
+//                 });
+//             }
+
 //         }
 
-//     } catch (error) {
-//         console.error("Error fetching files:", error);
+//         // Load intro if exists
+//         const intro = files.find(f => f.name === "1. Introduction.md");
+//         if (intro) {
+//             loadMarkdown(intro.download_url);
+//         }
+
+//     } catch (err) {
+//         console.error("Error fetching files:", err);
 //     } finally {
 //         document.querySelector(".loading").style.display = "none";
 //     }
 // }
-
-async function fetchMarkdownFiles() {
-    try {
-        document.querySelector(".loading").style.display = "flex";
-
-        const response = await fetch('https://api.github.com/repos/n-d-h/interview/contents/files');
-        if (!response.ok) throw new Error("Could not access folder.");
-
-        const files = await response.json();
-        const fileList = document.getElementById("fileList");
-        fileList.innerHTML = "<h3>Files</h3>";
-
-        // Handle top-level .md files
-        for (const file of files) {
-            if (file.type === "file" && file.name.endsWith(".md")) {
-                const btn = document.createElement("button");
-                btn.textContent = file.name.replace(".md", "");
-                btn.onclick = () => loadMarkdown(file.download_url);
-                fileList.appendChild(btn);
-            }
-
-            // Handle folders
-            if (file.type === "dir") {
-                const folderWrapper = document.createElement("div");
-                folderWrapper.classList.add("folder-wrapper");
-
-                const toggleBtn = document.createElement("button");
-                toggleBtn.classList.add("folder-toggle");
-                toggleBtn.textContent = `${file.name} <i class="fa-solid fa-chevron-right"></i>`;
-                toggleBtn.onclick = () => {
-                    const content = folderWrapper.querySelector(".folder-content");
-                    const isOpen = content.style.display === "block";
-                    content.style.display = isOpen ? "none" : "block";
-                    toggleBtn.textContent = `${isOpen ? '<i class="fa-solid fa-chevron-down"></i>' : '<i class="fa-solid fa-chevron-right"></i>'} `;
-                };
-
-                const folderContent = document.createElement("div");
-                folderContent.classList.add("folder-content");
-                folderContent.style.display = "none";
-
-                folderWrapper.appendChild(toggleBtn);
-                folderWrapper.appendChild(folderContent);
-                fileList.appendChild(folderWrapper);
-
-                // Fetch child files
-                const folderRes = await fetch(file.url);
-                if (!folderRes.ok) continue;
-                const childFiles = await folderRes.json();
-
-                childFiles.forEach(child => {
-                    if (child.name.endsWith(".md")) {
-                        const childBtn = document.createElement("button");
-                        childBtn.textContent = child.name.replace(".md", "");
-                        childBtn.onclick = () => loadMarkdown(child.download_url);
-                        folderContent.appendChild(childBtn);
-                    }
-                });
-            }
-
-        }
-
-        // Load intro if exists
-        const intro = files.find(f => f.name === "1. Introduction.md");
-        if (intro) {
-            loadMarkdown(intro.download_url);
-        }
-
-    } catch (err) {
-        console.error("Error fetching files:", err);
-    } finally {
-        document.querySelector(".loading").style.display = "none";
-    }
-}
 
 
 
@@ -157,23 +158,52 @@ function hideSidebar(event) {
     }
 }
 
+// async function loadMarkdown(markdownFile) {
+//     document.querySelector(".loading").style.display = "flex";
+
+//     let fileUrl = markdownFile;
+
+//     if (!fileUrl) {
+//         document.querySelector(".loading").style.display = "none";
+//         return;
+//     }
+
+//     // If not full GitHub raw URL, construct it
+//     if (!fileUrl.startsWith("https://")) {
+//         fileUrl = `https://raw.githubusercontent.com/n-d-h/interview/main/files/${markdownFile}.md`;
+//     }
+
+//     try {
+//         const response = await fetch(fileUrl);
+//         if (!response.ok) throw new Error("Failed to load markdown file.");
+
+//         const text = await response.text();
+
+//         document.getElementById("content").innerHTML = converter.makeHtml(text);
+
+//         // Highlight code blocks
+//         document.querySelectorAll("pre code").forEach(block => {
+//             hljs.highlightElement(block);
+//         });
+
+//     } catch (error) {
+//         console.error("Error loading file:", error);
+//         document.getElementById("content").innerHTML = `<p style="color: red;">⚠️ ${error.message}</p>`;
+//     } finally {
+//         document.querySelector(".loading").style.display = "none";
+//     }
+// }
+
 async function loadMarkdown(markdownFile) {
     document.querySelector(".loading").style.display = "flex";
 
-    let fileUrl = markdownFile;
-
-    if (!fileUrl) {
+    if (!markdownFile) {
         document.querySelector(".loading").style.display = "none";
         return;
     }
 
-    // If not full GitHub raw URL, construct it
-    if (!fileUrl.startsWith("https://")) {
-        fileUrl = `https://raw.githubusercontent.com/n-d-h/interview/main/files/${markdownFile}.md`;
-    }
-
     try {
-        const response = await fetch(fileUrl);
+        const response = await fetch(markdownFile);
         if (!response.ok) throw new Error("Failed to load markdown file.");
 
         const text = await response.text();
@@ -193,35 +223,6 @@ async function loadMarkdown(markdownFile) {
     }
 }
 
-
-// async function loadMarkdown(markdownFile) {
-//     document.querySelector(".loading").style.display = "flex";
-//     const file = markdownFile;
-
-//     if (!file) {
-//         document.querySelector(".loading").style.display = "none";
-//         return;
-//     }
-
-//     if (!file.startsWith("https")) {
-//         file = `https://raw.githubusercontent.com/n-d-h/interview/main/files/${markdownFile}.md`;
-//     }
-
-//     try {
-//         const response = await fetch(file);
-//         if (!response.ok) throw new Error("Failed to load markdown file.");
-
-//         const text = await response.text();
-//         document.getElementById("content").innerHTML = converter.makeHtml(text);
-//         document.querySelectorAll('pre code').forEach((block) => {
-//             hljs.highlightElement(block);
-//         });
-//     } catch (error) {
-//         console.error("Error loading file:", error);
-//     } finally {
-//         document.querySelector(".loading").style.display = "none";
-//     }
-// }
 
 
 function toggleDarkMode() {
