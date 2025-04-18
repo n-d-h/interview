@@ -15,12 +15,27 @@ async function fetchMarkdownFiles() {
                 <button type="button" onclick="toggleSidebar()">❌</button>
             </div>`;
 
+        const singleFile = document.createElement("div");
+        singleFile.classList.add("single-file");
         for (const file of files) {
             if (file.type === "file") {
                 const btn = document.createElement("button");
                 btn.textContent = file.name.replace(".md", "");
-                btn.onclick = () => loadMarkdown(file.path);
-                fileList.appendChild(btn);
+                btn.onclick = () => {
+                    loadMarkdown(file.path);
+                    const activeBtn = fileList.querySelector(".active-file");
+                    activeBtn && activeBtn.classList.remove("active-file");
+                    const openFolder = fileList.querySelector(".open");
+                    openFolder && openFolder.classList.remove("open");
+                    btn.classList.add("active-file");
+                };
+                if (file.name === "1. Introduction.md") {
+                    btn.classList.add("active-file");
+                }
+                singleFile.appendChild(btn);
+                if (!fileList.contains(singleFile)) {
+                    fileList.appendChild(singleFile);
+                }
             }
 
             if (file.type === "dir") {
@@ -43,7 +58,15 @@ async function fetchMarkdownFiles() {
                 file.children.forEach(child => {
                     const childBtn = document.createElement("button");
                     childBtn.innerHTML = `<li>${child.name.replace(".md", "")}</li>`;
-                    childBtn.onclick = () => loadMarkdown(child.path);
+                    childBtn.onclick = () => {
+                        loadMarkdown(child.path);
+                        const activeBtn = fileList.querySelector(".active-file");
+                        activeBtn && activeBtn.classList.remove("active-file");
+                        childBtn.classList.add("active-file");
+                        const openFolder = fileList.querySelector(".open");
+                        openFolder && openFolder.classList.remove("open");
+                        toggleBtn.classList.add("open");
+                    }
                     folderContent.appendChild(childBtn);
                 });
 
@@ -53,6 +76,10 @@ async function fetchMarkdownFiles() {
             }
         }
 
+        // add footer to fileList
+        const footer = document.createElement("div");
+        footer.classList.add("sidebar-footer");
+        fileList.appendChild(footer);
         const intro = files.find(f => f.name === "1. Introduction.md");
         if (intro) loadMarkdown(intro.path);
 
@@ -146,6 +173,7 @@ function toggleSidebar() {
     sidebar.classList.toggle('hidden');
     menuButton.classList.toggle('active');
     menuButton.innerHTML = sidebar.classList.contains('hidden') ? '☰' : '✖';
+    document.body.classList.toggle('no-scroll', menuButton.classList.contains('active'));
 }
 
 function hideSidebar(event) {
@@ -220,6 +248,9 @@ async function loadMarkdown(markdownFile) {
         document.getElementById("content").innerHTML = `<p style="color: red;">⚠️ ${error.message}</p>`;
     } finally {
         document.querySelector(".loading").style.display = "none";
+        if  (window.innerWidth < 768) {
+            toggleSidebar();
+        }
     }
 }
 
