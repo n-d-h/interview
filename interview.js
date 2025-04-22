@@ -1,4 +1,9 @@
-const converter = new showdown.Converter({ tables: true, strikethrough: true, tasklists: true, ghCodeBlocks: true });
+const converter = new showdown.Converter({ 
+    tables: true, 
+    strikethrough: true, 
+    tasklists: true, 
+    ghCodeBlocks: true,
+});
 
 async function fetchMarkdownFiles() {
     try {
@@ -242,6 +247,7 @@ async function loadMarkdown(markdownFile) {
         document.querySelectorAll("pre code").forEach(block => {
             hljs.highlightElement(block);
         });
+        
 
     } catch (error) {
         console.error("Error loading file:", error);
