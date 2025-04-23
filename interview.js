@@ -247,6 +247,22 @@ async function loadMarkdown(markdownFile) {
         document.querySelectorAll("pre code").forEach(block => {
             hljs.highlightElement(block);
         });
+
+        // try to add details and summary tags to the content that has h3 tags
+        const content = document.getElementById("content");
+        const h3Tags = content.querySelectorAll("h3");
+        h3Tags.forEach(h3 => {
+            const details = document.createElement("details");
+            const summary = document.createElement("summary");
+            summary.textContent = `${h3.textContent}`;
+            details.appendChild(summary);
+            let nextSibling = h3.nextElementSibling;
+            while (nextSibling && nextSibling.tagName !== "H3") {
+                details.appendChild(nextSibling);
+                nextSibling = content.querySelector("h3 + *");
+            }
+            h3.replaceWith(details);
+        });
         
 
     } catch (error) {

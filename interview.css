@@ -65,6 +65,15 @@ body {
     background: rgba(0, 0, 0, 0.7);
 }
 
+summary {
+    font-size: medium;
+    font-weight: 700;
+    color: #f39c12
+}
+details {
+    cursor: pointer;
+}
+
 h1,
 h2,
 h3,
